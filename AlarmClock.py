@@ -7,7 +7,6 @@ TIME_FORMAT = "%I:%M:%S %p"
 
 # Function to get alarm time from user
 
-
 def get_alarm():
 
     while True:
@@ -21,8 +20,6 @@ def get_alarm():
             print("Invalid time format! Please enter time in HH:MM:SS AM/PM format")
 
 # function to play alarm tone
-
-
 def play_sound(sound_file):
     try:
         # play the sound
@@ -31,10 +28,10 @@ def play_sound(sound_file):
         print(f"Error playing sound:{e}")
 
 def alarm_clock(alarm_time, sound_file,repeat_interval: int = 5):
+    
     date=datetime.datetime.now()
     date=date.strftime("%Y-%m-%d")
     
-
     print(f"Alarm is set for: {alarm_time} at date {date}.\nWaiting...")
     try:
         while True:
@@ -56,7 +53,6 @@ def alarm_clock(alarm_time, sound_file,repeat_interval: int = 5):
 
 
 
-
 # Function to dipalay the sound list and get user choice
 def display_sounds(sounds):
 
@@ -72,12 +68,9 @@ def display_sounds(sounds):
 
 
 if __name__ == "__main__":
-
+    
     sounds = Alarm_sounds.sound_file
     print("Welcome to Alarm Clock")
-    
-    
-
     alarm_time = get_alarm()
     selected_sound = display_sounds(sounds)
     repeat_interval = int(input("Enter the repeat interval (default is 5): ") or 5)
