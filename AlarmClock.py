@@ -2,12 +2,15 @@ import datetime
 import time
 from playsound import playsound
 import Alarm_sounds
+import os
 
 TIME_FORMAT = "%I:%M:%S %p"
 
+# Directory containing sound files
+ALARM_SOUNDS_DIR = "AlarmSounds"
+
+
 # Function to get alarm time from user
-
-
 def get_alarm():
 
     while True:
@@ -21,9 +24,15 @@ def get_alarm():
         except ValueError:
             print("Invalid time format! Please enter time in HH:MM:SS AM/PM format")
 
+
+# Function to get full paths for sound files
+def get_sound_paths():
+    return [
+        os.path.join(ALARM_SOUNDS_DIR, sound) for sound in Alarm_sounds.sound_files
+    ]
+
+
 # function to play alarm tone
-
-
 def play_sound(sound_file):
     try:
         # play the sound
@@ -63,7 +72,7 @@ def display_sounds(sounds):
 
     print("Available Alarm Sounds:")
     for i, sound in enumerate(sounds, start=1):
-        print(f"{i}. {sound}")
+        print(f"{i}. {os.path.basename(sound)}")
     while True:
         choice = int(
             input("Choose a sound by entering the corresponding number: "))
@@ -72,12 +81,17 @@ def display_sounds(sounds):
         print(f"Invalid choice. Please select a number between 1 and { len(sounds)}.")
 
 
-if __name__ == "__main__":
-
-    sounds = Alarm_sounds.sound_file
+def main():
+    sounds = get_sound_paths()
     print("Welcome to Alarm Clock")
     alarm_time = get_alarm()
     selected_sound = display_sounds(sounds)
     repeat_interval = int(
         input("Enter the repeat interval (default is 5): ") or 5)
     alarm_clock(alarm_time, selected_sound, repeat_interval)
+    
+    
+if __name__ == "__main__":
+    main()
+
+

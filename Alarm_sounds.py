@@ -1,4 +1,4 @@
-sound_file=[
+sound_files=[
     
     "alarm_clock_fine.mp3",
     "alarm_clock.mp3",
