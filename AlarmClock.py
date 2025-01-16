@@ -28,9 +28,8 @@ def get_alarm():
 
 # Function to get full paths for sound files
 def get_sound_paths():
-    return [
-        os.path.join(ALARM_SOUNDS_DIR, sound) for sound in Alarm_sounds.sound_files
-    ]
+    return [os.path.join(ALARM_SOUNDS_DIR, sound) for sound in os.listdir(ALARM_SOUNDS_DIR) if sound.endswith('.mp3')]
+
 
 
 # function to play alarm tone
@@ -65,21 +64,25 @@ def alarm_clock(alarm_time, sound_file, repeat_interval: int = 5):
 
             time.sleep(1)
     except KeyboardInterrupt:
+        # Handle the user pressing Ctrl+C
         print("\nAlarm stopped.")
+   
 
 
 # Function to dipalay the sound list and get user choice
 def display_sounds(sounds):
-
     print("Available Alarm Sounds:")
     for i, sound in enumerate(sounds, start=1):
         print(f"{i}. {os.path.basename(sound)}")
     while True:
-        choice = int(
-            input("Choose a sound by entering the corresponding number: "))
-        if 1 <= choice <= len(sounds):
-            return sounds[choice - 1]
-        print(f"Invalid choice. Please select a number between 1 and { len(sounds)}.")
+        try:
+            choice = int(input("Choose a sound by entering the corresponding number: "))
+            if 1 <= choice <= len(sounds):
+                return sounds[choice - 1]
+            else:
+                print(f"Invalid choice. Please select a number between 1 and {len(sounds)}.")
+        except ValueError:
+            print("Invalid input. Please enter a valid number.")
 
 # Main function
 def main():
