@@ -4,6 +4,7 @@ from playsound import playsound
 import Alarm_sounds
 import os
 
+# Formats of the time
 TIME_FORMAT = "%I:%M:%S %p"
 
 # Directory containing sound files
@@ -58,7 +59,7 @@ def alarm_clock(alarm_time, sound_file, repeat_interval: int = 5):
 
                 # Repeat the alarm at regular intervals
                 for _ in range(repeat_interval-1):
-                    time.sleep(4)  # wait for 1 seconds
+                    time.sleep(2)  # wait for 2 seconds
                     play_sound(sound_file)
                 break
 
@@ -80,7 +81,7 @@ def display_sounds(sounds):
             return sounds[choice - 1]
         print(f"Invalid choice. Please select a number between 1 and { len(sounds)}.")
 
-
+# Main function
 def main():
     sounds = get_sound_paths()
     print("Welcome to Alarm Clock")
