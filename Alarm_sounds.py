@@ -6,5 +6,5 @@ sound_files=[
     "cuckoo.mp3",
     "alarm.mp3",
     "flute.mp3",
-     
+     "loudest_alarm.mp3",
 ]
