@@ -35,7 +35,6 @@ def play_sound(sound_file):
 
 def stop_sound():
     pygame.mixer.music.stop()
-
 def alarm_clock(alarm_time, sound_file, message, repeat_interval):
     global stop_alarm_flag
     stop_alarm_flag = False
@@ -46,7 +45,11 @@ def alarm_clock(alarm_time, sound_file, message, repeat_interval):
                 if stop_alarm_flag:
                     break
                 if message:
-                    alarm_message_label.config(text=f"Message: {message}", fg="#008000")
+                    formatted_time = current_time.strftime(TIME_FORMAT)
+                    alarm_message_label.config(
+                        text=f"Alarm Triggered at {formatted_time}!\nMessage: {message}",
+                        fg="#008000"
+                    )
                     alarm_message_label.update()
 
                 if sound_file:
@@ -69,6 +72,7 @@ def alarm_clock(alarm_time, sound_file, message, repeat_interval):
         print("\nAlarm stopped.")
     finally:
         stop_alarm_flag = False  # Reset the flag when alarm stops
+
 
 def validate_time_format(time_str):
     try:
@@ -184,7 +188,7 @@ sound_combo = Combobox(input_frame, values=sounds, font=("Arial", 13), state="re
 sound_combo.grid(row=2, column=1, pady=10, padx=12, sticky="ew")
 
 # Repeat Interval Entry
-repeat_label = tk.Label(input_frame, text="Enter Repeat Interval time (default 5):", font=("Arial", 12), bg=BACKGROUND_COLOR)
+repeat_label = tk.Label(input_frame, text="Enter Repetition time (default 5 min):", font=("Arial", 12), bg=BACKGROUND_COLOR)
 repeat_label.grid(row=3, column=0, sticky="w", pady=5)
 repeat_entry = tk.Entry(input_frame, font=("Arial", 15), width=15, bd=1, relief="solid")
 repeat_entry.grid(row=3, column=1, pady=10,padx=10, sticky="ew")
