@@ -46,7 +46,7 @@ def alarm_clock(alarm_time, sound_file, message, repeat_interval):
                 if stop_alarm_flag:
                     break
                 if message:
-                    alarm_message_label.config(text=message)
+                    alarm_message_label.config(text=f"Message: {message}", fg="#008000")
                     alarm_message_label.update()
 
                 if sound_file:
@@ -115,7 +115,7 @@ def set_alarm():
 
     alarm_message_label.config(
         text=f"Alarm set for {alarm_time.strftime('%I:%M:%S %p on %Y-%m-%d')}.\n\nMessage: {custom_message or 'No message'}",
-        fg="green",
+        fg="#fc0404",
         bg="white",
     )
 
@@ -141,7 +141,7 @@ root.iconbitmap("alarm_clock_icon.ico")
 root.minsize(700, 400)
 root.maxsize(700, 400)
 
-BACKGROUND_COLOR = "#00FF7F"
+BACKGROUND_COLOR = "#91ad61"
 root.configure(background=BACKGROUND_COLOR)
 
 # Main Frame
@@ -184,7 +184,7 @@ sound_combo = Combobox(input_frame, values=sounds, font=("Arial", 13), state="re
 sound_combo.grid(row=2, column=1, pady=10, padx=12, sticky="ew")
 
 # Repeat Interval Entry
-repeat_label = tk.Label(input_frame, text="Enter Repeat Interval (default 5):", font=("Arial", 12), bg=BACKGROUND_COLOR)
+repeat_label = tk.Label(input_frame, text="Enter Repeat Interval time (default 5):", font=("Arial", 12), bg=BACKGROUND_COLOR)
 repeat_label.grid(row=3, column=0, sticky="w", pady=5)
 repeat_entry = tk.Entry(input_frame, font=("Arial", 15), width=15, bd=1, relief="solid")
 repeat_entry.grid(row=3, column=1, pady=10,padx=10, sticky="ew")
