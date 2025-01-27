@@ -121,6 +121,7 @@ def set_alarm():
         text=f"Alarm set for {alarm_time.strftime('%I:%M:%S %p on %Y-%m-%d')}.\n\nMessage: {custom_message or 'No message'}",
         fg="#fc0404",
         bg="white",
+      
     )
 
     # Run the alarm clock in a separate thread to keep GUI responsive
@@ -143,7 +144,7 @@ root.title("Alarm Clock")
 root.geometry("700x500")
 root.iconbitmap("alarm_clock_icon.ico")
 root.minsize(700, 400)
-root.maxsize(700, 400)
+#root.maxsize(700, 400)
 
 BACKGROUND_COLOR = "#91ad61"
 root.configure(background=BACKGROUND_COLOR)
@@ -175,10 +176,12 @@ time_entry = tk.Entry(input_frame, font=("Arial", 15), width=15, bd=1, relief="s
 time_entry.grid(row=0, column=1, pady=10,padx=10, sticky="ew")
 
 # Custom Message Entry
-message_label = tk.Label(input_frame, text="Enter Custom Message:",  font=("Arial", 12), bg=BACKGROUND_COLOR)
-message_label.grid(row=1, column=0, sticky="w", pady=5)
-message_entry = tk.Entry(input_frame, font=("Arial", 15), width=15, bd=1, relief="solid")
+message_label = tk.Label(input_frame, text="Enter Custom Message:",  font=("Arial", 12), bg=BACKGROUND_COLOR,  wraplength=200, justify="left")
+message_label.grid(row=1, column=0, columnspan=2, sticky="w", pady=5)
+message_entry = tk.Entry(input_frame, font=("Arial", 15), width=15, bd=1, relief="solid", validate="key",
+    validatecommand=(root.register(lambda P: len(P) <= 30), "%P") )
 message_entry.grid(row=1, column=1, pady=10,padx=10, sticky="ew")
+
 
 # Sound Selection Combobox
 sounds = [os.path.basename(path) for path in get_sound_paths()]
