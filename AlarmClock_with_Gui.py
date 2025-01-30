@@ -47,7 +47,7 @@ def alarm_clock(alarm_time, sound_file, message, repeat_interval):
                 if message:
                     formatted_time = current_time.strftime(TIME_FORMAT)
                     alarm_message_label.config(
-                        text=f"Alarm Triggered at {formatted_time}!\nMessage: {message}",
+                        text=f"Alarm Triggered at {formatted_time}!\n\nMessage: {message}",
                         fg="#008000"
                     )
                     alarm_message_label.update()
@@ -144,7 +144,7 @@ root.title("Alarm Clock")
 root.geometry("700x500")
 root.iconbitmap("alarm_clock_icon.ico")
 root.minsize(700, 400)
-#root.maxsize(700, 400)
+root.maxsize(800, 400)
 
 BACKGROUND_COLOR = "#91ad61"
 root.configure(background=BACKGROUND_COLOR)
